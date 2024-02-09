@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #f1f1f1;
+            padding: 20px;
+            text-align: center;
+        }
+        nav {
+            background-color: #333;
+            padding: 10px;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 10px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        main {
+            padding: 20px;
+        }
+        footer {
+            background-color: #f1f1f1;
+            padding: 10px;
+            text-align: center;
+        }
+        button{
+            padding: 10px;
+            border-radius: 10px;
+            border: none;
+        }
+        .b1{
+            background: rgb(56, 56, 154);
+            color: white;          
+            font-weight: bold;
+
+        }
+        .b2{
+            background: rgb(6, 233, 146);
+            font-weight: bold;
+        }
+        .b3{
+            background: rgb(245, 3, 3);
+            font-weight: bold;
+            color: aliceblue;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>LEAVE MANAGEMENT SYSTEM</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li><a href="{% url 'contact' %}">Contact</a></li>
+        </ul>
+    </nav>
+    <main>
+        {% if teacher.is_approved %}
+            <h2>Welcome to the Dashboard, {{ teacher.name }}</h2>
+            <p>You are currently approved as a Teacher in our system.</p>
+            <h5>What you want to perform</h5>
+            <div style="display: flex;gap: 20px;">
+                <a href="{% url 'view_students' %}"><button class="b1">View Students</button></a>
+                <a href="{% url 'pending_requests' %}"><button class="b2">Pending Requests</button></a>
+                <a href="{% url 'teacher_logout' %}"><button class="b3">Log Out</button></a>
+
+            </div>
+        {% else %}
+            <h2>Waiting for Approval</h2>
+            <p>Your registration is pending approval from the admin. You will be notified once approved.</p>
+            <a href="{% url 'teacher_logout' %}">Logout</a>
+
+        {% endif %}</main>
+</body>
+</html>

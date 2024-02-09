@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Students</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #f1f1f1;
+      padding: 20px;
+      text-align: center;
+    }
+
+    nav {
+      background-color: #333;
+      padding: 10px;
+    }
+
+    nav ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    nav ul li {
+      display: inline;
+      margin-right: 10px;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+    }
+
+    main {
+      padding: 20px;
+    }
+
+    footer {
+      background-color: #f1f1f1;
+      padding: 10px;
+      text-align: center;
+    }
+    input{
+      background: rgb(16, 159, 159);
+      border: none;
+      border-radius: 10px;
+      padding: 10px;
+      font-weight: bold;
+      color: wheat;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>LEAVE MANAGEMENT SYSTEM</h1>
+  </header>
+  <nav>
+    <ul>
+      <li><a href="{% url 'home' %}">Home</a></li>
+      <li><a href="{% url 'about' %}">About</a></li>
+      <li><a href="{% url 'contact' %}">Contact</a></li>
+    </ul>
+  </nav>
+  <main>
+    
+  <h2>Students in Your Department</h2>
+  <ul>{% for student in students %}
+    <div><img src="{{student.image.url}}" alt="{{student.name}}" width="80" height="120"></div>
+    <h2>{{ student.name }}</h2>
+    <p>Email: {{ student.email }}</p>
+    <p>Department: {{ student.department }}</p>
+    
+
+    {% for leave_request in leave_requests %}
+    {% if leave_request.student == student %}
+    <p>Leave Request: {{ leave_request.reason }}</p>
+    <form method="POST" action="{% url 'approve_leave' student.username %}">
+      {% csrf_token %}
+      <input type="submit" value="Approve">
+    </form>
+    {% endif %}
+    {% endfor %}
+
+    <hr>
+    {% endfor %}
+  </ul>
+  </main>
+</body>
+
+</html>

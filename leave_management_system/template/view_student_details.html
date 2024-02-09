@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #f1f1f1;
+            padding: 20px;
+            text-align: center;
+        }
+        nav {
+            background-color: #333;
+            padding: 10px;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 10px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        main {
+            padding: 20px;
+        }
+        footer {
+            background-color: #f1f1f1;
+            padding: 10px;
+            text-align: center;
+        }
+        button{
+            padding: 10px;
+            border-radius: 10px;
+            border: none;
+            background: #333;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    
+    <header>
+        <h1>LEAVE MANAGEMENT SYSTEM</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li><a href="{% url 'contact' %}">Contact</a></li>
+        </ul>
+    </nav>
+    <main>
+        {%csrf_token%}
+        <h2>Student Details</h2>
+        <div><img src="{{student.image.url}}" alt="{{student.name}}" width="90" height="100"></div>
+        <p><strong>Username:</strong> {{ student.username }}</p>
+        <p><strong>Name:</strong> {{ student.name }}</p>
+        <p><strong>Department:</strong> {{ student.department }}</p>
+        <p><strong>Email:</strong> {{ student.email }}</p>
+        <p><strong>Gender:</strong> {{ student.get_gender_display }}</p>
+        <div style="display: flex; gap: 20px;">
+            <a href="{% url 's_edit_profile' student.username %}"><button>Edit Profile</button></a>
+            <a href="{% url 'add_leave_request' %}"><button>Add Leave Request</button></a>
+            <a href="{% url 'view_leave_requests' %}"><button>View Leave Requests</button></a>
+            <a href="{% url 's_logout_view' %}"><button>Log Out</button></a></main>
+
+        </div>
+</body>
+</html>

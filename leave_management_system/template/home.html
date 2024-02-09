@@ -1,0 +1,121 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #f1f1f1;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #333;
+            padding: 10px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 10px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        footer {
+            background-color: #f1f1f1;
+            padding: 10px;
+            text-align: center;
+        }
+
+        @keyframes borderAnimation {
+            0% {
+                border-color: red;
+            }
+
+            25% {
+                border-color: rgb(0, 200, 255);
+            }
+
+            50% {
+                border-color: rgb(2, 255, 2);
+            }
+
+            75% {
+                border-color: yellow;
+            }
+
+            100% {
+                border-color: red;
+            }
+        }
+        a{
+            text-decoration: none;
+            font-size: large;
+            font-weight: bold;
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>LEAVE MANAGEMENT SYSTEM</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li><a href="{% url 'contact' %}">Contact</a></li>
+        </ul>
+    </nav>
+    <main>
+        <a href="/admin/" style="margin-left: -40px;">
+            <div
+                style="height: 380px; display: flex; flex-direction: row; gap: 150px; margin-top: 50px; margin-left: 300px;">
+                <div
+                    style="display: flex; flex-direction: column; text-align: center; border: 2px solid;animation: borderAnimation 4s infinite; padding: 10px;background: rgb(174, 171, 171);">
+                    <img src="static/images/administrator.png" alt="admin" height="200" width="200">
+                    <p>Admin</p>
+                </div>
+        </a>
+        <a href="{% url 't_login' %}" style="margin-left: -30px;">
+            <div
+                style="display: flex; flex-direction: column; text-align: center; border: 2px solid;animation: borderAnimation 4s infinite; padding: 10px;background: rgb(185, 185, 187);">
+                <img src="static/images/teacher.png" alt="admin" height="200" width="200">
+                <p>Teacher</p>
+            </div>
+        </a>
+        <a href="{% url 's_login' %}">
+            <div
+                style="display: flex; flex-direction: column; text-align: center; border: 2px solid;animation: borderAnimation 4s infinite; padding: 10px;background: rgb(186, 190, 186);">
+                <img src="static/images/graduated.png" alt="admin" height="200" width="200">
+                <p>Student</p>
+            </div>
+        </a>
+        </div>
+    </main>
+    <footer>
+        &copy; 2004 by rohithkp1901 All rights reserved by 369
+    </footer>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Register</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #f1f1f1;
+            padding: 20px;
+            text-align: center;
+        }
+        nav {
+            background-color: #333;
+            padding: 10px;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 10px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        main {
+            padding: 20px;
+        }
+        footer {
+            background-color: #f1f1f1;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>LEAVE MANAGEMENT SYSTEM</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li><a href="{% url 'contact' %}">Contact</a></li>
+        </ul>
+    </nav>
+    <main>
+
+        <form action="" method="POST">
+            {%csrf_token%}
+            <h1>STUDENT REGISTRATION</h1>
+            <div>
+                <label for="">NAME</label>
+                <input type="text" name="name">
+            </div>
+            <div>
+                <label for="">DEPARTMENT</label>
+                <input type="text" name="department">
+            </div>
+            <div>
+                <label for="">USERNAME</label>
+                <input type="text" name="username">
+            </div>
+            <div>
+                <label for="">EMAIL</label>
+                <input type="email" name="email">
+            </div>
+            <div>
+                <label for="">PASSWORD</label>
+                <input type="password" name="password">
+            </div>
+            <div>
+                <label for="">GENDER</label>
+                <div>
+                    <input type="radio" name="gender" value="Male">Male
+                    <input type="radio" name="gender" value="Female">Female
+                </div>
+            </div>
+            <div>
+                <label for="">PHOTO</label>
+                <input type="file" name="image">
+            </div>
+            <button type="submit">SUBMIT</button>
+        </form>
+    </main>
+</body>
+
+</html>

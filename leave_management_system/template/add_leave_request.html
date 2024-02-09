@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Leave Request</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #f1f1f1;
+            padding: 20px;
+            text-align: center;
+        }
+        nav {
+            background-color: #333;
+            padding: 10px;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 10px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        main {
+            padding: 20px;
+        }
+        footer {
+            background-color: #f1f1f1;
+            padding: 10px;
+            text-align: center;
+        }
+        form{
+            border: 1px;
+            margin: 50px;
+            width: 300px;
+        }
+        input{
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 20px;
+            border: none;
+            background: cyan;
+            color: black;
+            font-size: medium;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>LEAVE MANAGEMENT SYSTEM</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li><a href="{% url 'contact' %}">Contact</a></li>
+        </ul>
+    </nav>
+    <main>
+        <p>{{messages.error}}</p>
+        <form method="POST" action="{% url 'add_leave_request' %}">
+            {% csrf_token %}
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+                <label for="reason">Reason for Leave:</label>
+                <textarea id="reason" name="reason" required></textarea>
+            </div>
+            <input type="submit" value="Submit Leave Request">
+        </form>
+    </main>
+</body>
+</html>

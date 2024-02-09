@@ -1,0 +1,99 @@
+<!-- view_student_details.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #f1f1f1;
+            padding: 20px;
+            text-align: center;
+        }
+        nav {
+            background-color: #333;
+            padding: 10px;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 10px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        main {
+            padding: 20px;
+        }
+        footer {
+            background-color: #f1f1f1;
+            padding: 10px;
+            text-align: center;
+        }
+        .username,.password{
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+
+        }
+        
+        input{
+            padding: 10px;
+        }
+        input{
+            padding: 10px;
+            border: none;
+            border-radius: 15px;
+            color: white;
+            background: rgb(4, 235, 4);
+            font-size: medium;
+            font-weight: bold;
+        }
+    </style>
+    </head>
+<body>
+    <header>
+        <h1>LEAVE MANAGEMENT SYSTEM</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li><a href="{% url 'contact' %}">Contact</a></li>
+        </ul>
+    </nav>
+    <main>
+        <h2>{{ student.name }}'s Details</h2>
+        <div><img src="{{ student.image.url }}" alt="{{ student.name }}" width="80" height="120"></div>
+        <p>Email: {{ student.email }}</p>
+        <p>Department: {{ student.department }}</p>
+
+        <h3>Leave Requests</h3>
+    {% for leave_request in leave_requests %}
+    <p>Leave Request: {{ leave_request.reason }}</p>
+    
+    {% if not leave_request.approved %}
+        <form method="POST" action="{% url 'approve_leave' student.username %}">
+            {% csrf_token %}
+            <input type="hidden" name="leave_request_id" value="{{ leave_request.id }}">
+            <input type="submit" value="Approve">
+        </form>
+    {% else %}
+        <p>Leave Request Approved</p>
+    {% endif %}
+    
+    <hr>
+{% endfor %}
+    </main>
+    
+</body>
+</html>

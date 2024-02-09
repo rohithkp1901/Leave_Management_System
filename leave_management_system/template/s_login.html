@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #f1f1f1;
+            padding: 20px;
+            text-align: center;
+        }
+        nav {
+            background-color: #333;
+            padding: 10px;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 10px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        main {
+            padding: 20px;
+        }
+        footer {
+            background-color: #f1f1f1;
+            padding: 10px;
+            text-align: center;
+        }
+        .username,.password{
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+
+        }
+        form{
+            display: flex;
+            flex-direction: column;
+            margin-top: 70px;
+            margin-left: 550px;
+            width: 300px;
+            border: 1px solid black;
+            padding: 20px;
+            font-weight: bold;
+        }
+        input{
+            padding: 10px;
+        }
+        button{
+            padding: 10px;
+            border: none;
+            border-radius: 15px;
+            color: white;
+            background: rgb(4, 235, 4);
+            font-size: medium;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>LEAVE MANAGEMENT SYSTEM</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li><a href="{% url 'contact' %}">Contact</a></li>
+        </ul>
+    </nav>
+    <main>
+        <form method="POST" action="{% url 's_login_view' %}">
+            {% csrf_token %}
+            <h2 style="text-align: center;">STUDENT LOGIN</h2>
+            <div class="username">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            </div>
+            <div class="password">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit">LOGIN</button>
+        </form>
+    </main>
+</body>
+</html>
